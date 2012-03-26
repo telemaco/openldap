@@ -25,7 +25,7 @@ openldap['rootpw'] = nil
 
 # File and directory locations for openldap.
 case platform
-when "redhat","centos"
+when "redhat","centos","amazon","scientific"
   set['openldap']['dir']        = "/etc/openldap"
   set['openldap']['run_dir']    = "/var/run/openldap"
   set['openldap']['module_dir'] = "/usr/lib64/openldap"  
