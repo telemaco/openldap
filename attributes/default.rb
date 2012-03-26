@@ -46,10 +46,14 @@ openldap['cafile']  = "#{openldap['ssl_dir']}/ca.crt"
 openldap['slapd_type'] = nil
 
 if openldap['slapd_type'] == "slave"
-  master = search(:nodes, 'openldap_slapd_type:master') 
-  default['openldap']['slapd_master'] = master
-  default['openldap']['slapd_replpw'] = nil
-  default['openldap']['slapd_rid']    = 102
+  if Chef::Config[:solo]
+    Chef::Log.warn("This recipe uses search. Chef Solo does not support search.")
+  else
+    master = search(:nodes, 'openldap_slapd_type:master')
+    default['openldap']['slapd_master'] = master
+    default['openldap']['slapd_replpw'] = nil
+    default['openldap']['slapd_rid']    = 102
+  end
 end
 
 # Auth settings for Apache.
