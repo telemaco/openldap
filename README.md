@@ -27,30 +27,30 @@ attributes/openldap.rb.
 
 ## Client node attributes
 
-* `openldap[:basedn]` - basedn 
-* `openldap[:server]` - the LDAP server fully qualified domain name,
-  default `'ldap'.node[:domain]`.
+* `openldap['basedn']` - basedn
+* `openldap['server']` - the LDAP server fully qualified domain name,
+  default `'ldap'.node['domain']`.
 
 ## Server node attributes
 
-* `openldap[:slapd_type]` - master | slave
-* `openldap[:slapd_rid]` - unique integer ID, required if type is slave.
-* `openldap[:slapd_master]` - hostname of slapd master, attempts to
+* `openldap['slapd_type']` - master | slave
+* `openldap['slapd_rid']` - unique integer ID, required if type is slave.
+* `openldap['slapd_master']` - hostname of slapd master, attempts to
   search for slapd_type master.
 
 ## Apache configuration attributes
 
 Attributes useful for Apache authentication with LDAP.
 
-COOK-128 - set automatically based on openldap[:server] and
-openldap[:basedn] if those attributes are set. openldap[:auth_bindpw]
+COOK-128 - set automatically based on openldap['server'] and
+openldap['basedn'] if those attributes are set. openldap['auth_bindpw']
 remains nil by default as a default value is not easily predicted.
 
-* `openldap[:auth_type]` - determine whether binddn and bindpw are
+* `openldap['auth_type']` - determine whether binddn and bindpw are
   required (openldap no, ad yes)
-* `openldap[:auth_url]` - AuthLDAPURL
-* `openldap[:auth_binddn]` - AuthLDAPBindDN
-* `openldap[:auth_bindpw]` - AuthLDAPBindPassword
+* `openldap['auth_url']` - AuthLDAPURL
+* `openldap['auth_binddn']` - AuthLDAPBindDN
+* `openldap['auth_bindpw']` - AuthLDAPBindPassword
 
 Usage
 =====
@@ -103,7 +103,7 @@ If installing for the first time, the initial directory needs to be created. Cre
   
 ## Passwords:
 
-Set the password, openldap[:rootpw] for the rootdn in the node's attributes. This should be a password hash generated from slappasswd. The default slappasswd command on Ubuntu 8.10 and Mac OS X 10.5 will generate a SHA1 hash:
+Set the password, openldap['rootpw'] for the rootdn in the node's attributes. This should be a password hash generated from slappasswd. The default slappasswd command on Ubuntu 8.10 and Mac OS X 10.5 will generate a SHA1 hash:
 
     $ slappasswd -s "secretsauce"
     {SSHA}6BjlvtSbVCL88li8IorkqMSofkLio58/
